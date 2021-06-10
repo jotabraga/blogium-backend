@@ -69,14 +69,15 @@ app.post('/new-story',(req,res) =>{
 
 app.get('/posts/:id/comments',(req,res) => {
     const postId = req.params.id;
-    res.send(comments.find((comment) => comment.postId == postId));
+    console.log(postId);
+    res.send(comments.find((comment) => comment.postId === parseInt(postId)).comments);
 });
 
 app.post('/posts/:id/comments',(req,res) =>{
     const postId = req.params.id;
     const postToComment = comments.find((comment)=> comment.postId == postId);
     postToComment.comments.push(req.body);
-    res.send();
+    res.send(req.body);
 })
 
 app.listen(4001);
