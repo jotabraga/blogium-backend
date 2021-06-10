@@ -30,6 +30,10 @@ app.get('/posts/:id',(req,res) => {
     res.send(posts.find((post) => post.id == postId));
 });
 
-app.post()
+app.post('/new-story',(req,res) =>{
+    const newId = (posts[length-1].id + 1);
+    posts.push([...req.body, "id":newId]);
+    res.send();
+})
 
 app.listen(4001);
