@@ -80,4 +80,21 @@ app.post('/posts/:id/comments',(req,res) =>{
     res.send(req.body);
 })
 
+app.put('/posts/:id',(req,res) => {
+    const postId = req.params.id;
+    const editedPost = posts.find((post) => post.id === parseInt(postId));
+    editedPost.title = req.body.title;
+    editedPost.coverUrl = req.body.coverUrl;
+    editedPost.contentPreview = req.body.contentPreview;
+    res.send();
+})
+
+app.delete('/posts/:id',(req,res) => {
+    console.log("entrou no del");
+    const postId = req.params.id;
+    posts = posts.filter((post) => post.id !== parseInt(postId));
+    console.log(posts);
+    res.send();
+})
+
 app.listen(4001);
