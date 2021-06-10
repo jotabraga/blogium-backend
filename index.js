@@ -30,4 +30,6 @@ app.get('/posts/:id',(req,res) => {
     res.send(posts.find((post) => post.id == postId));
 });
 
+app.post()
+
 app.listen(4001);
