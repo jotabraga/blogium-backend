@@ -63,7 +63,6 @@ app.get('/posts/:id',(req,res) => {
 
 app.post('/new-story',(req,res) =>{
     const newId = (posts[posts.length-1].id + 1);
-    console.log(req);
     posts.push({...req.body, "id":newId});
     res.send();
 })
@@ -72,5 +71,12 @@ app.get('/posts/:id/comments',(req,res) => {
     const postId = req.params.id;
     res.send(comments.find((comment) => comment.postId == postId));
 });
+
+app.post('/posts/:id/comments',(req,res) =>{
+    const postId = req.params.id;
+    const postToComment = comments.find((comment)=> comment.postId == postId);
+    postToComment.comments.push(req.body);
+    res.send();
+})
 
 app.listen(4001);
